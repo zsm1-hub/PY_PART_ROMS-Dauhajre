@@ -17,3 +17,5 @@ Code can advect 3D or 2D trajectories dependeing on what is defined
 in pypart_params.py
 
 
+Once pertinent files above are edited, the code can be run with run_part.sh
+
