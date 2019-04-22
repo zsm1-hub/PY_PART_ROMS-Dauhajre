@@ -1,0 +1,19 @@
+The code here is setup to run the R36m coastal connectivity
+particle releases as defined in Dauhajre and McWilliams 2019
+
+Not included in this directory is the ROMS output which is used
+to advect Lagrangian particles via velocities.
+
+For users wishing to create their own particle release,
+add pertinent ROMS output directories and information
+to ROMS_solutions_paths.py and then edit pypart_params.py
+for the specific run.
+
+Users can create their own seeding strategy by editing
+pypart_init.py and pypart_funcs.py (see seeding examples defined in both)
+and then editing pypart_params.py
+
+Code can advect 3D or 2D trajectories dependeing on what is defined 
+in pypart_params.py
+
+
