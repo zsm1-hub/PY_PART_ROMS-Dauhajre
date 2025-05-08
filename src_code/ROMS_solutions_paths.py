@@ -170,7 +170,93 @@ class ROMS_run(object):
 	   self.nc_tstep        = 48
 	   self.ROMS_run_parent_set = 'MidCal'
         
-        
+           self.dx        = 100
+	   self.nc_tstep        = 24
+	   self.ROMS_run_parent_set = 'MidCal'
+        #####################
+        # change by zsm
+        #######################
+        if self.ROMS_run_ID == 'child_':
+           
+	   self.path_output   = '/leader/user/zsm/TWS/res/hourly_child/'
+           self.path_ts_uv = '/leader/user/zsm/TWS/res/hourly_child/'
+	   self.path_grid = '/leader/user/zsm/TWS/files/'
+           self.path_omega = '/leader/user/zsm/TWS/res/hourly_child/' 
+           self.path_zs    = '/leader/user/zsm/TWS/res/hourly_child/'
+           self.path_input = self.path_grid 
+	   self.out_base_name = 'child_his_'
+	   self.grid_name     = 'chinav2_ATWS1.nc.1'
+           self.wind_name     = 'usw4sbc_wnd.nc'
+	   self.hflux_name    = 'usw4sbc_rad.nc'
+           self.omega_name    = 'child_his_'
+           self.zs_name        = 'child_his_'
+           self.date_origin = datetime.datetime(1900,1,1,0,0,0,0)
+           #############################
+           # netcdf ID number paramters
+	   ###########################
+	   # Model start day (in model day convetions)
+	   self.start_day = 4711
+	   
+	   # index in first netcdf file of real data
+	   # this takes into account zero padding
+	   self.nc_step_start = 0
+
+	   #number ID of first netcdf FILE
+           self.nc_ID_initial = 0
+
+
+
+        ##############################################tide
+        if self.ROMS_run_ID == 'tide':
+           
+	   self.path_output   = '/leader/user/zsm/TWS2_400600/TIDE/U3/'
+           self.path_ts_uv = '/leader/user/zsm/TWS2_400600/TIDE/U3/'
+	   self.path_grid = '/sugon7/zsm/croco_tools_xmd1204/CROCO_FILES/TWS2/'
+           self.path_omega = '/leader/user/zsm/TWS2_400600/TIDE/U3/' 
+           self.path_zs    = '/leader/user/zsm/TWS2_400600/TIDE/U3/'
+           self.path_input = self.path_grid 
+	   self.out_base_name = 'CCL1_his_'
+	   self.grid_name     = 'TWS2_rot2.nc'
+           self.wind_name     = 'usw4sbc_wnd.nc'
+	   self.hflux_name    = 'usw4sbc_rad.nc'
+           self.omega_name    = 'CCL1_his_'
+           self.zs_name        = 'CCL1_his_'
+           self.date_origin = datetime.datetime(1900,1,1,0,0,0,0)
+        ############################################notide
+        if self.ROMS_run_ID == 'notide':
+           
+	   self.path_output   = '/leader/user/zsm/TWS2_400600/NOTIDE/'
+           self.path_ts_uv = '/leader/user/zsm/TWS2_400600/NOTIDE/'
+	   self.path_grid = '/sugon7/zsm/croco_tools_xmd1204/CROCO_FILES/TWS2/'
+           self.path_omega = '/leader/user/zsm/TWS2_400600/NOTIDE/' 
+           self.path_zs    = '/leader/user/zsm/TWS2_400600/NOTIDE/'
+           self.path_input = self.path_grid 
+	   self.out_base_name = 'CCL1_his.nc.not_'
+	   self.grid_name     = 'TWS2_rot2.nc'
+           self.wind_name     = 'usw4sbc_wnd.nc'
+	   self.hflux_name    = 'usw4sbc_rad.nc'
+           self.omega_name    = 'CCL1_his.nc.not_'
+           self.zs_name        = 'CCL1_his.nc.not_'
+           self.date_origin = datetime.datetime(1900,1,1,0,0,0,0)
+           #############################
+           # netcdf ID number paramters
+	   ###########################
+	   # Model start day (in model day convetions)
+	   self.start_day = 4711
+	   
+	   # index in first netcdf file of real data
+	   # this takes into account zero padding
+	   self.nc_step_start = 0
+
+	   #number ID of first netcdf FILE
+           self.nc_ID_initial = 0
+
+           ###################################
+           # OTHER PARAMTERS
+	   ##################################
+	   self.dx        = 36
+	   self.nc_tstep        = 48
+	   self.ROMS_run_parent_set = 'MidCal'
        
  
     ###########################################

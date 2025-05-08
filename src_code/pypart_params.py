@@ -6,7 +6,7 @@ SIMULATION
 '''
 ###################################
 
-run_name = 'test500kpp'
+run_name = 'NOTIDE'
 
 
 ##########################################
@@ -17,7 +17,7 @@ in ROMS_solutions_paths.py class, add on to this
 when using your own solution in the class
 """
 #########################################
-ROMS_ID = 'tide'
+ROMS_ID = 'notide'
 
 
 ################################
