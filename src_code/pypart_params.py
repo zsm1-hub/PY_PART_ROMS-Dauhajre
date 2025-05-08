@@ -6,7 +6,7 @@ SIMULATION
 '''
 ###################################
 
-run_name = 'SBC_SITES_L4_V5'
+run_name = 'test500kpp'
 
 
 ##########################################
@@ -17,25 +17,25 @@ in ROMS_solutions_paths.py class, add on to this
 when using your own solution in the class
 """
 #########################################
-ROMS_ID = 'L4_MidCal_SBC'
+ROMS_ID = 'tide'
 
 
 ################################
 '''
 fnum ---> first file index
-frpf --> file index spacing (change this by multiples to change temporal resolution)
+frpf --> file index spacing (change this by multiples to change temporal resolution) how many tindex in a netcdf file
 nfr --> number of frames to integrate over
 fr --> starting frame in velocity file (zero index based)
-dfr --> time-step increment per netcdf file (default is 1)
-sub --> number of time-steps between frames
+dfr --> time-step increment in per netcdf file (default is 1)
+sub --> number of time-steps between frames, time intervals keyi tiaobu, or we can say, dt=delt/sub is real time-step in model
 '''
 ##################################
-fnum    = 144 
+fnum    = 16 
 frpf    = 24
 fr      = 0 
 dfr     = 1  
-nfr     = 48*40
-sub     = 10 
+nfr     = 16*24 
+sub     = 1 
 
 ##########################
 # timing option
@@ -75,14 +75,35 @@ in this manner, particles are sourced more offshore
 than they can be trapped at a certain destination
 '''
 ###########################################
-seed_choice = 'preload_CC_masks_and_part'
-path_mask = '/home/dauhajre/MidCal/py_particles/particle_runs/SBC_SITES_L4_V5/'
-fname_mask = 'L4_CC_masks.p'
-fname_init = 'L4_SBC_init_part_oct31.p'
-nq_sites = 100
-n_releases = 40*3
+seed_choice = 'box'
+nq=50
+# # same to netcdf  read way y equals j
+sy_0=300
+sy_1=350
+sx_0=150
+sx_1=190
+n_releases =1
 check_seed = True
 pz_seed = 'z'
 z_seed = -2 
 
+# seed_choice = 'isobath_fill'
 
+
+# nq_isos=50
+# h1=20
+# h2=30
+# n_releases =1
+# check_seed = True
+
+# pz_seed = 'z'
+# z_seed = -2 
+
+# seed_choice = 'mask_zsm'
+# pathmat='/home/zsm/PY_PART_ROMS-Dauhajre/part_in/'
+# fname_mask='boxpart.mat'
+# n_releases =1
+# check_seed = True
+
+# pz_seed = 'z'
+# z_seed = -2 

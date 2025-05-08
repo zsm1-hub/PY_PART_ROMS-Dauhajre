@@ -41,6 +41,12 @@ execfile(code_path + 'pypart_params.py')
 print 'Setting ROMS solutions paths for: ' + ROMS_ID
 ROMS_obj = ROMS_out_paths.ROMS_run(ROMS_ID)
 ROMS_obj.set_paths()
+#################add by zsm
+print 'hiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii*******************************'
+print ROMS_ID
+print ROMS_obj.path_grid + ROMS_obj.grid_name
+print ROMS_obj.path_output + ROMS_obj.out_base_name
+########################end
 #####################################
 #SET OUTPUT AND GRID FILE PATHS/NAMES
 ####################################
@@ -55,7 +61,11 @@ init_dict = {}
 param_keys = ['ROMS_ID','run_name','fnum', 'frpf', 'nfr', 'fr', 'dfr','sub','veloc_adv', 'n_releases', 'tim_opt', 'omega_online', 't_interp','file_type']
 param_key_types = [ROMS_ID, run_name,fnum, frpf, nfr, fr, dfr, sub, veloc_adv, n_releases,tim_opt, omega_online,t_interp,file_type]
 init_dict = PF.add_keys_dict(param_keys, param_key_types, var_dict = init_dict) 
-
+#################################add by zsm
+print 'fuck it fuck it *******************************************************'
+print param_keys
+print ROMS_obj.path_output + ROMS_obj.out_base_name + '%04d' %fnum + '.nc','r'
+####################################end
 
 ######################################################
 # INITIALIZE PARTICLE LOCATIONS BASED ON SEEDING
@@ -79,6 +89,10 @@ if seed_choice == 'preload_CC_masks':
    px_temp,py_temp = PF.fill_px_py_by_masks(init_dict['dest_masks'],nc_grd.variables['mask_rho'][:,:],nq_sites)
 if seed_choice == 'box':
    px_temp,py_temp = PF.box_seed(nq,sx_0,sx_1,sy_0,sy_1)
+   print sx_0
+   print sx_1
+   print sy_0
+   print sy_1
 if seed_choice == 'isobath_fill':
    px_temp,py_temp = PF.isobath_fill_seed(nc_grd,h1,h2,nq_isos)
 if seed_choice == 'isobath_fill_sectors':
@@ -94,7 +108,11 @@ if seed_choice == 'multi_site_along_iso':
 
 if seed_choice == 'fill_multi_isos':
    px_temp, py_temp,dest_masks = PF.seed_between_isos(nc_grd, iso_list, n_sites, nq_sites, rad_sites, fig_check_seed = check_seed,check_dest_map=dest_check)
-
+if seed_choice == 'mask_zsm':
+    datap=sio.loadmat(pathmat + fname_mask)
+    px_temp=datap['px']
+    py_temp=datap['py']
+    # px_temp
 ##########################################
 # CHECK SEEDING
 ############################################
@@ -130,7 +148,8 @@ else:
       init_dict['px'] = px_temp
       init_dict['py'] = py_temp
 
-
+print px_temp.shape
+print py_temp.shape
 ###################################################
 #	SAVE INPUT DICTIONARY AS PICKLE FILE
 ##################################################

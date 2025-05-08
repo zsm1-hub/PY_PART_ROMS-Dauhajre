@@ -905,23 +905,25 @@ def check_fig_seed(nc_grd,px,py,c_contour=[]):
     # SHOW USER FLOAT LOCATIONS ON GRID
     ####################################
     h = nc_grd.variables['h'][:,:]
+    xi_rho=nc_grd.variables['xi_rho'][:,:]
+    eta_rho=nc_grd.variables['eta_rho'][:,:]
     mask = nc_grd.variables['mask_rho'][:,:]
     mask_rho = np.copy(mask)
     mask_rho[mask_rho==0] = np.nan
     plt.ion() 
     fig_check = plt.figure(figsize=[24,8])
     if len(c_contour)==0:
-       h_con = plt.contour(h,colors='k',linewidths=2.5)
+       h_con = plt.contour(xi_rho,eta_rho,h,colors='k',linewidths=2.5)
     else:
-       h_con = plt.contour(h,c_contour,colors='k',linewidth=2.5)
-    plt.imshow(h*mask_rho,origin='lower',cmap=cm.gist_earth_r)
+       h_con = plt.contour(xi_rho,eta_rho,h,c_contour,colors='k',linewidth=2.5)
+    plt.contourf(xi_rho,eta_rho,h*mask_rho,origin='lower',cmap=cm.gist_earth_r)
     cbar_plot = plt.colorbar()
     cbar_plot.set_label(r'$h(m)$',fontsize=22)
     plt.plot(px,py, 'o', color='slategrey',markersize=2.5)
     plt.title('INITIAL PARTICLE LOCATIONS')
     ax = plt.gca()
-    ax.set_xlim([0,mask_rho.shape[1]])
-    ax.set_ylim([0,mask_rho.shape[0]])
+    # ax.set_xlim([0,mask_rho.shape[1]])
+    # ax.set_ylim([0,mask_rho.shape[0]])
     move_on = raw_input('Press enter to continue...')
     plt.ioff()
     plt.close('all')
